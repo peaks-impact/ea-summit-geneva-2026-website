@@ -1,17 +1,27 @@
-// Mobile nav toggle
-const navToggle = document.getElementById('navToggle');
-const primaryNav = document.getElementById('primaryNav');
+// Mobile navigation toggle
+(function () {
+  const navToggle = document.getElementById('navToggle');
+  const primaryNav = document.getElementById('primaryNav');
+  if (!navToggle || !primaryNav) return;
 
-if (navToggle && primaryNav) {
+  const setOpen = (open) => {
+    primaryNav.classList.toggle('open', open);
+    navToggle.setAttribute('aria-expanded', String(open));
+    navToggle.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
+  };
+
   navToggle.addEventListener('click', () => {
-    const isOpen = primaryNav.classList.toggle('open');
-    navToggle.setAttribute('aria-expanded', String(isOpen));
+    setOpen(!primaryNav.classList.contains('open'));
   });
 
   primaryNav.querySelectorAll('a').forEach((link) => {
-    link.addEventListener('click', () => {
-      primaryNav.classList.remove('open');
-      navToggle.setAttribute('aria-expanded', 'false');
-    });
+    link.addEventListener('click', () => setOpen(false));
   });
-}
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && primaryNav.classList.contains('open')) {
+      setOpen(false);
+      navToggle.focus();
+    }
+  });
+})();
