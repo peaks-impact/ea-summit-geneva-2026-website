@@ -403,12 +403,6 @@ p { margin: 0; }
     radial-gradient(circle at 52.42% 19.94%, rgba(126,195,241,1) 0%, rgba(126,195,241,0) 57.55%),
     radial-gradient(circle at 80.31% 84.47%, rgba(220,235,249,1) 0%, rgba(220,235,249,0) 69.1%);
 }
-.panel-veil {
-  position: absolute;
-  inset: 0;
-  background: rgba(253, 248, 240, 0.60);
-  pointer-events: none;
-}
 .panel-content { position: relative; }
 
 .panel-navy h2 { color: var(--cream); margin-bottom: 12px; }
