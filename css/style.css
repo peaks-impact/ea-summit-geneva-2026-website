@@ -278,7 +278,6 @@ p { margin: 0; }
   margin-bottom: 18px;
 }
 .kicker-sky { color: var(--sky); }
-.kicker-rust { color: var(--rust-deep); }
 
 .prose {
   font-size: 1.0625rem;
