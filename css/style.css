@@ -472,6 +472,113 @@ p { margin: 0; }
 .callout p { font-size: 1rem; line-height: 1.6; color: var(--text-soft); }
 .callout strong { color: var(--navy); }
 
+/* ---------- Speakers ---------- */
+.section-lede { margin-top: 20px; }
+
+/* "Updated every week" status line */
+.update-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+  margin-top: 20px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text);
+}
+.pulse-dot {
+  position: relative;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--rust);
+  flex: none;
+}
+.pulse-dot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: var(--rust);
+  animation: pulse-ring 2.2s cubic-bezier(0.2, 0.6, 0.3, 1) infinite;
+}
+@keyframes pulse-ring {
+  0%   { transform: scale(1);   opacity: 0.55; }
+  70%  { transform: scale(3.2); opacity: 0; }
+  100% { transform: scale(3.2); opacity: 0; }
+}
+
+.speakers-grid {
+  list-style: none;
+  margin: 40px 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px 28px;
+}
+.speaker-photo {
+  aspect-ratio: 1 / 1;
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  background: var(--sky-pale);
+  border: 1px solid var(--border);
+}
+.speaker-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.speaker-name {
+  margin-top: 18px;
+  font-family: var(--font-head);
+  font-weight: 600;
+  font-size: 1.0625rem;
+  line-height: 1.35;
+  color: var(--navy);
+}
+.speaker-role {
+  margin-top: 5px;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: var(--text);
+}
+
+/* ---------- Organisations ---------- */
+.orgs-grid {
+  list-style: none;
+  margin: 40px 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+.org-tile {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  min-height: 140px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 28px;
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+.org-tile:hover {
+  border-color: var(--rust-light);
+  transform: translateY(-2px);
+}
+.org-tile img {
+  max-width: 220px;
+  max-height: 72px;
+  width: auto;
+  height: auto;
+  display: block;
+}
+
 /* ---------- Program ---------- */
 .program-grid {
   display: grid;
@@ -543,8 +650,8 @@ p { margin: 0; }
 }
 
 /* ---------- Pricing ---------- */
-/* Two rows so the tier cards start level with the body copy, not the heading.
-   Explicit placement keeps them aligned however the heading wraps. */
+/* Three rows: eyebrow, heading, body. The tier cards start on the heading row
+   so their top edge is level with the section title, whatever way it wraps. */
 .pricing-grid {
   display: grid;
   grid-template-columns: 1fr 0.85fr;
@@ -552,9 +659,10 @@ p { margin: 0; }
   row-gap: 0;
   align-items: start;
 }
-.pricing-head { grid-column: 1; grid-row: 1; }
-.pricing-body { grid-column: 1; grid-row: 2; }
-.pricing-grid .tiers { grid-column: 2; grid-row: 2; }
+.pricing-kicker { grid-column: 1; grid-row: 1; }
+.pricing-head { grid-column: 1; grid-row: 2; }
+.pricing-body { grid-column: 1; grid-row: 3; }
+.pricing-grid .tiers { grid-column: 2; grid-row: 2 / span 2; }
 .pricing-grid h2 { margin-bottom: 24px; }
 
 .tiers {
@@ -671,17 +779,21 @@ p { margin: 0; }
   .pricing-grid,
   .contact-grid { grid-template-columns: 1fr; gap: 36px; }
   .pricing-grid { row-gap: 24px; }
+  .pricing-kicker,
   .pricing-head,
   .pricing-body,
   .pricing-grid .tiers { grid-column: 1; grid-row: auto; }
+  .pricing-kicker { margin-bottom: 0; }
   .intro-actions { flex-direction: row; flex-wrap: wrap; }
   .program-intro { position: static; }
   .audiences { grid-template-columns: 1fr; gap: 28px; }
   .steps { grid-template-columns: 1fr; }
+  .speakers-grid,
+  .orgs-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
 /* Collapse the nav into a menu before the links run out of room */
-@media (max-width: 900px) {
+@media (max-width: 1040px) {
   .nav-toggle { display: flex; }
   .site-header .header-inner { gap: 16px; position: relative; }
   .primary-nav {
@@ -746,6 +858,12 @@ p { margin: 0; }
   .tiers li,
   .contact-card,
   .steps li { padding: 22px 24px; }
+  .speakers-grid { gap: 24px 16px; margin-top: 32px; }
+  /* One logo per row on phones: the wider wordmarks stay legible */
+  .orgs-grid { margin-top: 32px; grid-template-columns: 1fr; }
+  .org-tile { min-height: 100px; padding: 18px 24px; }
+  .org-tile img { max-width: 200px; max-height: 64px; }
+  .speaker-name { margin-top: 14px; font-size: 1rem; }
   .callout { margin-top: 32px; padding: 18px 20px; align-items: flex-start; }
   .callout .diamond { margin-top: 6px; }
   .fact { grid-template-columns: 1fr; gap: 4px; }
@@ -760,4 +878,5 @@ p { margin: 0; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   * { transition-duration: 0.01ms !important; }
+  .pulse-dot::after { animation: none; opacity: 0; }
 }
