@@ -28,6 +28,12 @@
   --on-navy-dim: #8FAFD8;
   --on-navy-faint: #7B9BC6;
 
+  /* Dark band (Program) */
+  --dark: #001C54;
+  --on-dark: #FDF8F0;
+  --on-dark-body: #CFC4B8;
+  --on-dark-muted: #A99C8F;
+
   /* Terracotta */
   --rust: #CC6B4F;
   --rust-dark: #B4573C;
@@ -561,6 +567,21 @@ p { margin: 0; }
   text-wrap: pretty;
 }
 
+.section-footnote {
+  margin-top: 28px;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.6;
+  color: var(--text);
+  text-wrap: balance;
+}
+.section-footnote .pulse-dot {
+  display: inline-block;
+  margin-right: 10px;
+  vertical-align: 1px;
+}
+
 /* ---------- Organisations ---------- */
 .orgs-grid {
   list-style: none;
@@ -595,38 +616,132 @@ p { margin: 0; }
 }
 
 /* ---------- Program ---------- */
-.program-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 64px;
-  align-items: start;
+/* Full-bleed dark band, so the brand gradient can be used at full strength:
+   its pale stops (#DCEBF9, #FDF8F0) are invisible on cream but sing on dark. */
+.section-dark {
+  background: var(--dark);
+  padding: 84px 0 92px;
 }
-.program-intro { position: sticky; top: 108px; }
-.program-intro h2 { margin-bottom: 20px; }
+.section-dark .kicker { color: #7EC3F1; }
+.section-dark h2 { color: var(--on-dark); }
+.section-dark .prose { color: var(--on-dark-body); }
 
-.program-list {
+.program-heading { max-width: 760px; }
+
+.agenda {
   list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+  position: relative;
+  max-width: 800px;
+  margin: 44px 0 0;
+  padding: 4px 0 4px 40px;
 }
-.program-list li {
-  background: var(--white);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-card);
-  padding: 26px 30px;
-  display: flex;
-  gap: 18px;
-  align-items: flex-start;
+/* the brand rule, turned on its side */
+.agenda::before {
+  content: "";
+  position: absolute;
+  left: 7px;
+  top: 14px;
+  bottom: 16px;
+  width: 2px;
+  background: linear-gradient(180deg,
+    #7EC3F1 0%,
+    #DCEBF9 26%,
+    #FDF8F0 46%,
+    #F0C4B2 70%,
+    #CC6B4F 100%);
 }
-.program-list .diamond { width: 9px; height: 9px; margin-top: 8px; }
-.program-list p {
+.agenda-item {
+  position: relative;
+  padding-bottom: 30px;
+}
+.agenda-item:last-child { padding-bottom: 0; }
+.agenda-item::before {
+  content: "";
+  position: absolute;
+  left: -40px;
+  top: 5px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--dark);
+  border: 2px solid var(--step, var(--rust));
+}
+
+/* Each item takes the rail's colour where it sits. Sampled from the same five
+   stops as .rainbow-rule, stopping just short of the final one so the last
+   label still clears 4.5:1 on the dark ground. */
+.agenda-item:nth-child(1) { --step: #7EC3F1; }
+.agenda-item:nth-child(2) { --step: #A3D3F4; }
+.agenda-item:nth-child(3) { --step: #C8E2F7; }
+.agenda-item:nth-child(4) { --step: #E4EEF7; }
+.agenda-item:nth-child(5) { --step: #F5F5F2; }
+.agenda-item:nth-child(6) { --step: #FAEDE3; }
+.agenda-item:nth-child(7) { --step: #F5D7C8; }
+.agenda-item:nth-child(8) { --step: #EEBFAD; }
+.agenda-item:nth-child(9) { --step: #E2A18B; }
+.agenda-item:nth-child(10) { --step: #D68369; }
+
+.agenda-type {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--step, var(--rust));
+  margin-bottom: 7px;
+}
+.agenda-title {
+  font-size: 1.1875rem;
+  line-height: 1.35;
+  color: var(--on-dark);
+}
+.agenda-desc {
+  margin-top: 8px;
   font-size: 1rem;
   line-height: 1.7;
-  color: var(--text-blue);
+  color: var(--on-dark-body);
   text-wrap: pretty;
+}
+
+.agenda-sub {
+  margin: 12px 0 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.agenda-sub li {
+  position: relative;
+  padding-left: 20px;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--on-dark-body);
+}
+.agenda-sub li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 11px;
+  width: 7px;
+  height: 7px;
+  background: var(--step, var(--rust));
+  transform: rotate(45deg);
+}
+
+/* Breaks read lighter than sessions */
+.agenda-item.is-break::before {
+  border-color: var(--step, var(--border-blue));
+  background: var(--dark);
+  width: 12px;
+  height: 12px;
+  left: -38px;
+  top: 7px;
+}
+.agenda-item.is-break .agenda-title {
+  font-weight: 500;
+  font-size: 1.0625rem;
+  color: var(--on-dark-muted);
 }
 
 /* ---------- Application ---------- */
@@ -790,7 +905,6 @@ p { margin: 0; }
   .panel { padding: 48px 36px; }
   .intro-top,
   .intro-body,
-  .program-grid,
   .pricing-grid,
   .contact-grid { grid-template-columns: 1fr; gap: 36px; }
   .pricing-grid { row-gap: 24px; }
@@ -800,7 +914,6 @@ p { margin: 0; }
   .pricing-grid .tiers { grid-column: 1; grid-row: auto; }
   .pricing-kicker { margin-bottom: 0; }
   .intro-actions { flex-direction: row; flex-wrap: wrap; }
-  .program-intro { position: static; }
   .audiences { grid-template-columns: 1fr; gap: 28px; }
   .steps { grid-template-columns: 1fr; }
   .orgs-grid { grid-template-columns: repeat(2, 1fr); }
@@ -869,10 +982,15 @@ p { margin: 0; }
   .section { margin-top: 64px; }
   .section.intro { margin-top: 48px; }
   .panel { padding: 36px 24px; }
-  .program-list li,
   .tiers li,
   .contact-card,
   .steps li { padding: 22px 24px; }
+  .section-dark { padding: 56px 0 64px; }
+  .agenda { padding-left: 30px; margin-top: 32px; }
+  .agenda::before { left: 5px; }
+  .agenda-item::before { left: -30px; width: 13px; height: 13px; top: 6px; }
+  .agenda-item.is-break::before { left: -29px; width: 11px; height: 11px; }
+  .agenda-item { padding-bottom: 26px; }
   .speakers-list { gap: 12px; margin-top: 32px; }
   .speaker { grid-template-columns: 1fr; gap: 20px; padding: 22px 24px; }
   .speaker-photo { max-width: 180px; }
