@@ -510,20 +510,29 @@ p { margin: 0; }
   100% { transform: scale(3.2); opacity: 0; }
 }
 
-.speakers-grid {
+.speakers-list {
   list-style: none;
   margin: 40px 0 0;
   padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.speaker {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  padding: 30px 34px;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 32px 28px;
+  grid-template-columns: 200px 1fr;
+  gap: 32px;
+  align-items: start;
 }
 .speaker-photo {
-  aspect-ratio: 1 / 1;
-  border-radius: var(--radius-card);
+  aspect-ratio: 4 / 5;
+  border-radius: 14px;
   overflow: hidden;
   background: var(--sky-pale);
-  border: 1px solid var(--border);
 }
 .speaker-photo img {
   width: 100%;
@@ -532,18 +541,24 @@ p { margin: 0; }
   display: block;
 }
 .speaker-name {
-  margin-top: 18px;
-  font-family: var(--font-head);
-  font-weight: 600;
-  font-size: 1.0625rem;
-  line-height: 1.35;
-  color: var(--navy);
+  font-size: 1.375rem;
+  line-height: 1.25;
 }
 .speaker-role {
-  margin-top: 5px;
-  font-size: 0.9375rem;
+  margin-top: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   line-height: 1.5;
-  color: var(--text);
+  color: var(--rust);
+}
+.speaker-bio {
+  margin-top: 18px;
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--text-blue);
+  text-wrap: pretty;
 }
 
 /* ---------- Organisations ---------- */
@@ -788,8 +803,8 @@ p { margin: 0; }
   .program-intro { position: static; }
   .audiences { grid-template-columns: 1fr; gap: 28px; }
   .steps { grid-template-columns: 1fr; }
-  .speakers-grid,
   .orgs-grid { grid-template-columns: repeat(2, 1fr); }
+  .speaker { grid-template-columns: 168px 1fr; gap: 26px; padding: 26px 28px; }
 }
 
 /* Collapse the nav into a menu before the links run out of room */
@@ -858,12 +873,14 @@ p { margin: 0; }
   .tiers li,
   .contact-card,
   .steps li { padding: 22px 24px; }
-  .speakers-grid { gap: 24px 16px; margin-top: 32px; }
+  .speakers-list { gap: 12px; margin-top: 32px; }
+  .speaker { grid-template-columns: 1fr; gap: 20px; padding: 22px 24px; }
+  .speaker-photo { max-width: 180px; }
+  .speaker-name { font-size: 1.25rem; }
   /* One logo per row on phones: the wider wordmarks stay legible */
   .orgs-grid { margin-top: 32px; grid-template-columns: 1fr; }
   .org-tile { min-height: 100px; padding: 18px 24px; }
   .org-tile img { max-width: 200px; max-height: 64px; }
-  .speaker-name { margin-top: 14px; font-size: 1rem; }
   .callout { margin-top: 32px; padding: 18px 20px; align-items: flex-start; }
   .callout .diamond { margin-top: 6px; }
   .fact { grid-template-columns: 1fr; gap: 4px; }
