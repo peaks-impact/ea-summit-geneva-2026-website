@@ -53,6 +53,10 @@ expanded, inline styles moved into classes, the canvas JS runtime dropped.
 
 ## Updating content
 
-All copy lives in `index.html`. The apply link (`https://luma.com/13lyllfq`) appears three
-times: header CTA, intro, and the application section. Ticket tiers, program bullets and the
-audience list are plain markup, so add or remove list items directly.
+All copy lives in `index.html`. Ticket tiers, program bullets and the audience list are plain
+markup, so add or remove list items directly.
+
+Applications closed on 10 October 2026. The apply buttons (header CTA, intro and application
+section) were removed: the intro now shows a `.status-note` line and the application section
+heading says applications are closed. The Luma link (`https://luma.com/13lyllfq`) only remains
+in the JSON-LD event data in `<head>`, where the offer availability is set to `SoldOut`.
