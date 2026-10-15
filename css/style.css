@@ -692,20 +692,21 @@ p { margin: 0; }
 /* Each item takes the rail's colour where it sits. Sampled at even steps from the
    same five stops as .rainbow-rule (0% to 92%), stopping just short of the final
    one so the last label still clears 4.5:1 on the dark ground (lowest: 5.65:1).
-   Resample if the number of agenda items changes. */
+   Resample if the number of agenda items changes (end marker included). */
 .agenda-item:nth-child(1) { --step: #7EC3F1; }
-.agenda-item:nth-child(2) { --step: #9ACFF3; }
-.agenda-item:nth-child(3) { --step: #B5DBF6; }
-.agenda-item:nth-child(4) { --step: #D1E6F8; }
-.agenda-item:nth-child(5) { --step: #E4EEF7; }
-.agenda-item:nth-child(6) { --step: #F0F3F3; }
-.agenda-item:nth-child(7) { --step: #FDF8F0; }
-.agenda-item:nth-child(8) { --step: #F9E7DC; }
-.agenda-item:nth-child(9) { --step: #F5D7C8; }
-.agenda-item:nth-child(10) { --step: #F1C6B5; }
-.agenda-item:nth-child(11) { --step: #E8B09C; }
-.agenda-item:nth-child(12) { --step: #DF9983; }
-.agenda-item:nth-child(13) { --step: #D68369; }
+.agenda-item:nth-child(2) { --step: #98CEF3; }
+.agenda-item:nth-child(3) { --step: #B1D9F5; }
+.agenda-item:nth-child(4) { --step: #CBE4F8; }
+.agenda-item:nth-child(5) { --step: #E0ECF8; }
+.agenda-item:nth-child(6) { --step: #EBF1F5; }
+.agenda-item:nth-child(7) { --step: #F7F6F2; }
+.agenda-item:nth-child(8) { --step: #FBF0E7; }
+.agenda-item:nth-child(9) { --step: #F7E1D5; }
+.agenda-item:nth-child(10) { --step: #F3D2C2; }
+.agenda-item:nth-child(11) { --step: #EFC2AF; }
+.agenda-item:nth-child(12) { --step: #E7AD98; }
+.agenda-item:nth-child(13) { --step: #DE9881; }
+.agenda-item:nth-child(14) { --step: #D68369; }
 
 .agenda-type {
   font-family: var(--font-mono);
@@ -769,6 +770,13 @@ p { margin: 0; }
   font-size: 1.0625rem;
   color: var(--on-dark-muted);
 }
+
+/* End of the day: a filled dot that terminates the rail. The label is a single
+   line, padded so its centre lines up with the dot's, which keeps the rail's end
+   (16px above the list's bottom edge) inside the dot. */
+.agenda-item.is-end { padding-top: 5px; }
+.agenda-item.is-end::before { background: var(--step); }
+.agenda-item.is-end .agenda-type { margin: 0; line-height: 16px; }
 
 /* ---------- Application ---------- */
 .steps {
