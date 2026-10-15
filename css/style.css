@@ -689,19 +689,23 @@ p { margin: 0; }
   border: 2px solid var(--step, var(--rust));
 }
 
-/* Each item takes the rail's colour where it sits. Sampled from the same five
-   stops as .rainbow-rule, stopping just short of the final one so the last
-   label still clears 4.5:1 on the dark ground. */
+/* Each item takes the rail's colour where it sits. Sampled at even steps from the
+   same five stops as .rainbow-rule (0% to 92%), stopping just short of the final
+   one so the last label still clears 4.5:1 on the dark ground (lowest: 5.65:1).
+   Resample if the number of agenda items changes. */
 .agenda-item:nth-child(1) { --step: #7EC3F1; }
-.agenda-item:nth-child(2) { --step: #A3D3F4; }
-.agenda-item:nth-child(3) { --step: #C8E2F7; }
-.agenda-item:nth-child(4) { --step: #E4EEF7; }
-.agenda-item:nth-child(5) { --step: #F5F5F2; }
-.agenda-item:nth-child(6) { --step: #FAEDE3; }
-.agenda-item:nth-child(7) { --step: #F5D7C8; }
-.agenda-item:nth-child(8) { --step: #EEBFAD; }
-.agenda-item:nth-child(9) { --step: #E2A18B; }
-.agenda-item:nth-child(10) { --step: #D68369; }
+.agenda-item:nth-child(2) { --step: #9ACFF3; }
+.agenda-item:nth-child(3) { --step: #B5DBF6; }
+.agenda-item:nth-child(4) { --step: #D1E6F8; }
+.agenda-item:nth-child(5) { --step: #E4EEF7; }
+.agenda-item:nth-child(6) { --step: #F0F3F3; }
+.agenda-item:nth-child(7) { --step: #FDF8F0; }
+.agenda-item:nth-child(8) { --step: #F9E7DC; }
+.agenda-item:nth-child(9) { --step: #F5D7C8; }
+.agenda-item:nth-child(10) { --step: #F1C6B5; }
+.agenda-item:nth-child(11) { --step: #E8B09C; }
+.agenda-item:nth-child(12) { --step: #DF9983; }
+.agenda-item:nth-child(13) { --step: #D68369; }
 
 .agenda-type {
   font-family: var(--font-mono);
