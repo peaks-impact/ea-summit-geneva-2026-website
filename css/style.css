@@ -694,20 +694,21 @@ p { margin: 0; }
    one so the last label still clears 4.5:1 on the dark ground (lowest: 5.65:1).
    Resample if the number of agenda items changes (end marker included). */
 .agenda-item:nth-child(1) { --step: #7EC3F1; }
-.agenda-item:nth-child(2) { --step: #96CDF3; }
-.agenda-item:nth-child(3) { --step: #AED7F5; }
-.agenda-item:nth-child(4) { --step: #C5E1F7; }
-.agenda-item:nth-child(5) { --step: #DCEBF9; }
-.agenda-item:nth-child(6) { --step: #E7EFF6; }
-.agenda-item:nth-child(7) { --step: #F2F4F3; }
-.agenda-item:nth-child(8) { --step: #FDF8F0; }
-.agenda-item:nth-child(9) { --step: #F9EADF; }
-.agenda-item:nth-child(10) { --step: #F6DCCE; }
-.agenda-item:nth-child(11) { --step: #F2CDBD; }
-.agenda-item:nth-child(12) { --step: #EDBDAA; }
-.agenda-item:nth-child(13) { --step: #E5AA95; }
-.agenda-item:nth-child(14) { --step: #DD967F; }
-.agenda-item:nth-child(15) { --step: #D68369; }
+.agenda-item:nth-child(2) { --step: #94CCF3; }
+.agenda-item:nth-child(3) { --step: #AAD6F5; }
+.agenda-item:nth-child(4) { --step: #C1DFF7; }
+.agenda-item:nth-child(5) { --step: #D7E9F9; }
+.agenda-item:nth-child(6) { --step: #E4EEF7; }
+.agenda-item:nth-child(7) { --step: #EEF2F4; }
+.agenda-item:nth-child(8) { --step: #F8F6F1; }
+.agenda-item:nth-child(9) { --step: #FBF1E8; }
+.agenda-item:nth-child(10) { --step: #F8E4D8; }
+.agenda-item:nth-child(11) { --step: #F5D7C8; }
+.agenda-item:nth-child(12) { --step: #F1C9B9; }
+.agenda-item:nth-child(13) { --step: #ECB9A6; }
+.agenda-item:nth-child(14) { --step: #E4A792; }
+.agenda-item:nth-child(15) { --step: #DD957E; }
+.agenda-item:nth-child(16) { --step: #D68369; }
 
 .agenda-type {
   font-family: var(--font-mono);
