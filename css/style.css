@@ -694,19 +694,20 @@ p { margin: 0; }
    one so the last label still clears 4.5:1 on the dark ground (lowest: 5.65:1).
    Resample if the number of agenda items changes (end marker included). */
 .agenda-item:nth-child(1) { --step: #7EC3F1; }
-.agenda-item:nth-child(2) { --step: #98CEF3; }
-.agenda-item:nth-child(3) { --step: #B1D9F5; }
-.agenda-item:nth-child(4) { --step: #CBE4F8; }
-.agenda-item:nth-child(5) { --step: #E0ECF8; }
-.agenda-item:nth-child(6) { --step: #EBF1F5; }
-.agenda-item:nth-child(7) { --step: #F7F6F2; }
-.agenda-item:nth-child(8) { --step: #FBF0E7; }
-.agenda-item:nth-child(9) { --step: #F7E1D5; }
-.agenda-item:nth-child(10) { --step: #F3D2C2; }
-.agenda-item:nth-child(11) { --step: #EFC2AF; }
-.agenda-item:nth-child(12) { --step: #E7AD98; }
-.agenda-item:nth-child(13) { --step: #DE9881; }
-.agenda-item:nth-child(14) { --step: #D68369; }
+.agenda-item:nth-child(2) { --step: #96CDF3; }
+.agenda-item:nth-child(3) { --step: #AED7F5; }
+.agenda-item:nth-child(4) { --step: #C5E1F7; }
+.agenda-item:nth-child(5) { --step: #DCEBF9; }
+.agenda-item:nth-child(6) { --step: #E7EFF6; }
+.agenda-item:nth-child(7) { --step: #F2F4F3; }
+.agenda-item:nth-child(8) { --step: #FDF8F0; }
+.agenda-item:nth-child(9) { --step: #F9EADF; }
+.agenda-item:nth-child(10) { --step: #F6DCCE; }
+.agenda-item:nth-child(11) { --step: #F2CDBD; }
+.agenda-item:nth-child(12) { --step: #EDBDAA; }
+.agenda-item:nth-child(13) { --step: #E5AA95; }
+.agenda-item:nth-child(14) { --step: #DD967F; }
+.agenda-item:nth-child(15) { --step: #D68369; }
 
 .agenda-type {
   font-family: var(--font-mono);
@@ -754,6 +755,13 @@ p { margin: 0; }
   height: 7px;
   background: var(--step, var(--rust));
   transform: rotate(45deg);
+}
+
+/* A description under a sub-item, e.g. one of two parallel workshops */
+.agenda-sub-desc {
+  display: block;
+  margin-top: 4px;
+  color: var(--on-dark-muted);
 }
 
 /* Breaks read lighter than sessions */
