@@ -689,11 +689,11 @@ p { margin: 0; }
   border: 2px solid var(--step, var(--rust));
 }
 
-/* Each item takes the rail's colour where it sits. Sampled at even steps from the
-   same five stops as .rainbow-rule (0% to 92%), stopping just short of the final
-   one so the last label still clears 4.5:1 on the dark ground (lowest: 5.65:1).
-   Currently 16 items.
-   Resample if the number of agenda items changes (end marker included). */
+/* Each item's dot (and its cards' top edge) takes the rail's colour where it sits.
+   Sampled at even steps from the same five stops as .rainbow-rule (0% to 92%).
+   Labels and times stay cream for legibility on the dark ground.
+   Resample if the number of agenda items changes (end marker included).
+   Currently 16 items. */
 .agenda-item:nth-child(1) { --step: #7EC3F1; }
 .agenda-item:nth-child(2) { --step: #94CCF3; }
 .agenda-item:nth-child(3) { --step: #AAD6F5; }
@@ -713,12 +713,20 @@ p { margin: 0; }
 
 .agenda-type {
   font-family: var(--font-mono);
-  font-size: 0.6875rem;
-  font-weight: 600;
-  letter-spacing: 0.14em;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  line-height: 26px; /* centred on the rail dot */
   text-transform: uppercase;
-  color: var(--step, var(--rust));
-  margin-bottom: 7px;
+  color: var(--on-dark-body);
+  margin-bottom: 4px;
+}
+/* The time is what people scan for, so it is the brightest and largest part of the label */
+.agenda-time {
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: var(--on-dark);
 }
 .agenda-title {
   max-width: 720px;
@@ -762,7 +770,7 @@ p { margin: 0; }
   font-size: 0.9375rem;
   font-weight: 600;
   line-height: 1.5;
-  color: var(--step, var(--on-dark));
+  color: var(--on-dark);
 }
 
 /* Who a session is for */
@@ -792,15 +800,15 @@ p { margin: 0; }
 }
 .track-meta {
   font-family: var(--font-mono);
-  font-size: 0.6875rem;
-  font-weight: 600;
-  letter-spacing: 0.14em;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--step, var(--rust));
+  color: var(--on-dark-body);
   margin-bottom: 10px;
 }
 .track-meta .agenda-room { margin: 0 8px 0 0; }
-.track-time { white-space: nowrap; }
+.track-time { white-space: nowrap; font-size: 0.9375rem; font-weight: 600; letter-spacing: 0.03em; color: var(--on-dark); }
 .agenda-track .agenda-title { font-size: 1.0625rem; }
 .agenda-track .agenda-desc { font-size: 0.9375rem; line-height: 1.65; }
 
