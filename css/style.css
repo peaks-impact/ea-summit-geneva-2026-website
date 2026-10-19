@@ -653,7 +653,7 @@ p { margin: 0; }
 .agenda {
   list-style: none;
   position: relative;
-  max-width: 800px;
+  max-width: 980px;
   margin: 44px 0 0;
   padding: 4px 0 4px 40px;
 }
@@ -692,24 +692,24 @@ p { margin: 0; }
 /* Each item takes the rail's colour where it sits. Sampled at even steps from the
    same five stops as .rainbow-rule (0% to 92%), stopping just short of the final
    one so the last label still clears 4.5:1 on the dark ground (lowest: 5.65:1).
+   Currently 16 items.
    Resample if the number of agenda items changes (end marker included). */
 .agenda-item:nth-child(1) { --step: #7EC3F1; }
-.agenda-item:nth-child(2) { --step: #93CCF3; }
-.agenda-item:nth-child(3) { --step: #A8D5F5; }
-.agenda-item:nth-child(4) { --step: #BCDEF6; }
-.agenda-item:nth-child(5) { --step: #D1E6F8; }
-.agenda-item:nth-child(6) { --step: #E1EDF8; }
-.agenda-item:nth-child(7) { --step: #EAF1F5; }
-.agenda-item:nth-child(8) { --step: #F4F4F3; }
-.agenda-item:nth-child(9) { --step: #FDF8F0; }
-.agenda-item:nth-child(10) { --step: #FAECE1; }
-.agenda-item:nth-child(11) { --step: #F7DFD2; }
-.agenda-item:nth-child(12) { --step: #F4D3C3; }
-.agenda-item:nth-child(13) { --step: #F1C6B5; }
-.agenda-item:nth-child(14) { --step: #EAB6A2; }
-.agenda-item:nth-child(15) { --step: #E3A58F; }
-.agenda-item:nth-child(16) { --step: #DC947C; }
-.agenda-item:nth-child(17) { --step: #D68369; }
+.agenda-item:nth-child(2) { --step: #94CCF3; }
+.agenda-item:nth-child(3) { --step: #AAD6F5; }
+.agenda-item:nth-child(4) { --step: #C1DFF7; }
+.agenda-item:nth-child(5) { --step: #D7E9F9; }
+.agenda-item:nth-child(6) { --step: #E4EEF7; }
+.agenda-item:nth-child(7) { --step: #EEF2F4; }
+.agenda-item:nth-child(8) { --step: #F8F6F1; }
+.agenda-item:nth-child(9) { --step: #FBF1E8; }
+.agenda-item:nth-child(10) { --step: #F8E4D8; }
+.agenda-item:nth-child(11) { --step: #F5D7C8; }
+.agenda-item:nth-child(12) { --step: #F1C9B9; }
+.agenda-item:nth-child(13) { --step: #ECB9A6; }
+.agenda-item:nth-child(14) { --step: #E4A792; }
+.agenda-item:nth-child(15) { --step: #DD957E; }
+.agenda-item:nth-child(16) { --step: #D68369; }
 
 .agenda-type {
   font-family: var(--font-mono);
@@ -721,11 +721,13 @@ p { margin: 0; }
   margin-bottom: 7px;
 }
 .agenda-title {
+  max-width: 720px;
   font-size: 1.1875rem;
   line-height: 1.35;
   color: var(--on-dark);
 }
 .agenda-desc {
+  max-width: 720px;
   margin-top: 8px;
   font-size: 1rem;
   line-height: 1.7;
@@ -733,38 +735,74 @@ p { margin: 0; }
   text-wrap: pretty;
 }
 
-.agenda-sub {
-  margin: 12px 0 0;
-  padding: 0;
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-.agenda-sub li {
-  position: relative;
-  padding-left: 20px;
-  font-size: 1rem;
-  line-height: 1.7;
-  color: var(--on-dark-body);
-}
-.agenda-sub li::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 11px;
-  width: 7px;
-  height: 7px;
-  background: var(--step, var(--rust));
-  transform: rotate(45deg);
+.agenda-desc a {
+  color: var(--on-dark);
+  text-decoration-color: var(--step, var(--rust));
+  text-underline-offset: 3px;
 }
 
-/* A description under a sub-item, e.g. one of two parallel workshops */
-.agenda-sub-desc {
-  display: block;
-  margin-top: 4px;
+/* Room: a quiet outlined tag after the time, so it reads as "where" not "what" */
+.agenda-room {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 2px 8px 1px;
+  border: 1px solid rgba(253, 248, 240, 0.24);
+  border-radius: 999px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: var(--on-dark-body);
+  vertical-align: 1px;
+  white-space: nowrap;
+}
+
+/* Who is speaking or hosting */
+.agenda-who {
+  max-width: 720px;
+  margin-top: 6px;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--step, var(--on-dark));
+}
+
+/* Who a session is for */
+.agenda-for {
+  margin-top: 8px;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  font-style: italic;
   color: var(--on-dark-muted);
 }
+
+/* Sessions that run at the same time sit side by side */
+.agenda-tracks {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 14px;
+  margin-top: 14px;
+}
+.agenda-item.has-tracks > .agenda-type + .agenda-tracks { margin-top: 4px; }
+.agenda-track {
+  min-width: 0;
+  padding: 18px 20px 20px;
+  background: var(--navy-card);
+  border: 1px solid var(--navy-rule);
+  border-top: 2px solid var(--step, var(--rust));
+  border-radius: 14px;
+}
+.track-meta {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--step, var(--rust));
+  margin-bottom: 10px;
+}
+.track-meta .agenda-room { margin: 0 8px 0 0; }
+.track-time { white-space: nowrap; }
+.agenda-track .agenda-title { font-size: 1.0625rem; }
+.agenda-track .agenda-desc { font-size: 0.9375rem; line-height: 1.65; }
 
 /* Breaks read lighter than sessions */
 .agenda-item.is-break::before {
@@ -1040,6 +1078,12 @@ p { margin: 0; }
   .agenda-item::before { left: -30px; width: 13px; height: 13px; top: 6px; }
   .agenda-item.is-break::before { left: -29px; width: 11px; height: 11px; }
   .agenda-item { padding-bottom: 26px; }
+  .agenda-tracks { grid-template-columns: 1fr; gap: 10px; }
+  .agenda-track { padding: 16px 16px 18px; }
+  /* the room drops to its own line under the time */
+  .agenda-type .agenda-room,
+  .track-meta .agenda-room { display: block; width: fit-content; max-width: 100%; margin: 6px 0 0; white-space: normal; }
+  .track-meta .agenda-room { margin: 0 0 6px; }
   .speakers-list { gap: 12px; margin-top: 32px; }
   .speaker { grid-template-columns: 1fr; gap: 20px; padding: 22px 24px; }
   .speaker-photo { max-width: 180px; }
